@@ -82,7 +82,7 @@ begin
 	-- PORT MAPS ----------------------------------------
 	clk_div: clock_divider
         generic map( 
-            k_DIV => 12500000
+            k_DIV => 900000
         )                     
         port map (
             i_clk   => clk,
@@ -98,7 +98,7 @@ begin
     
     tdm4_uut : TDM4
         port map (
-           i_clk    => clk,
+           i_clk    => w_slow_clk,
            i_reset  => w_tdm_reset,
            i_D3 	=> x"F", 
 		   i_D2 	=> w_fsm_out1,
@@ -135,6 +135,6 @@ begin
 	-- leave unused switches UNCONNECTED. Ignore any warnings this causes.
 
 	-- reset signals
-	w_tdm_reset <= btnR OR btnU;
+	w_fsm_reset <= btnR OR btnU;
 	w_clk_reset <= btnL OR btnU;
 end top_basys3_arch;
